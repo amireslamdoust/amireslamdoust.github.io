@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+set -e
+
+pnpm lint-staged
+pnpm lint:content
+pnpm typecheck
+pnpm test

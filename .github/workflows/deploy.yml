@@ -25,9 +25,14 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
       - run: pnpm lint:content
+      - run: pnpm typecheck
       - run: pnpm test
       - run: pnpm build
+      - name: Install Playwright Chromium
+        run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:e2e
       - name: Ensure .nojekyll in artifact
         run: touch dist/.nojekyll
       - name: Upload Pages artifact

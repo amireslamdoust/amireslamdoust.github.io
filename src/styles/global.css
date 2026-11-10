@@ -156,7 +156,8 @@ a:hover {
   height: var(--header-h);
   backdrop-filter: blur(14px);
   background: color-mix(in oklab, var(--color-bg) 78%, transparent);
-  border-bottom: 1px solid color-mix(in oklab, var(--color-border) 70%, transparent);
+  border-bottom: 1px solid
+    color-mix(in oklab, var(--color-border) 70%, transparent);
 }
 
 .site-header__inner {
@@ -320,9 +321,21 @@ a:hover {
   position: absolute;
   inset: -20%;
   background:
-    radial-gradient(ellipse 50% 45% at 18% 30%, var(--atmosphere-a), transparent 60%),
-    radial-gradient(ellipse 45% 40% at 78% 20%, var(--atmosphere-b), transparent 55%),
-    radial-gradient(ellipse 40% 50% at 55% 75%, var(--atmosphere-c), transparent 50%),
+    radial-gradient(
+      ellipse 50% 45% at 18% 30%,
+      var(--atmosphere-a),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 45% 40% at 78% 20%,
+      var(--atmosphere-b),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 40% 50% at 55% 75%,
+      var(--atmosphere-c),
+      transparent 50%
+    ),
     linear-gradient(
       160deg,
       color-mix(in oklab, var(--color-bg) 40%, transparent),
@@ -375,7 +388,11 @@ a:hover {
 }
 
 .work-card:hover {
-  border-color: color-mix(in oklab, var(--color-accent) 45%, var(--color-border));
+  border-color: color-mix(
+    in oklab,
+    var(--color-accent) 45%,
+    var(--color-border)
+  );
   box-shadow: var(--shadow-2);
   transform: translateY(-2px);
 }
@@ -512,13 +529,6 @@ a:hover {
 
 .cv-page {
   background: var(--color-bg);
-}
-
-.cv-page .site-header,
-.cv-page .atmosphere,
-.cv-page [data-command-palette],
-.cv-page .no-print {
-  /* print handled below */
 }
 
 @media print {

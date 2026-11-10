@@ -48,17 +48,17 @@ const year = new Date().getFullYear();
     <script is:inline>
       (function () {
         try {
-          var raw = localStorage.getItem('ae-portfolio-theme');
-          var state = raw ? JSON.parse(raw) : { brand: 'neutral', colorScheme: 'light' };
-          var brand = state && state.brand ? state.brand : 'neutral';
-          var scheme = state && state.colorScheme ? state.colorScheme : 'light';
+          const raw = localStorage.getItem('ae-portfolio-theme');
+          const state = raw ? JSON.parse(raw) : { brand: 'neutral', colorScheme: 'light' };
+          const brand = state && state.brand ? state.brand : 'neutral';
+          let scheme = state && state.colorScheme ? state.colorScheme : 'light';
           if (scheme === 'system') {
             scheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
           }
           document.documentElement.dataset.theme = brand;
           document.documentElement.dataset.colorScheme = scheme;
           document.documentElement.style.colorScheme = scheme;
-        } catch (e) {
+        } catch {
           document.documentElement.dataset.theme = 'neutral';
           document.documentElement.dataset.colorScheme = 'light';
         }

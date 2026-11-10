@@ -15,7 +15,7 @@ export class DocumentThemeAdapter implements DocumentThemeWriter {
 }
 
 export class NoopDocumentThemeAdapter implements DocumentThemeWriter {
-  apply(_state: ThemeState): void {
-    // SSR / tests
+  apply(): void {
+    // SSR / tests — intentionally no document side effects
   }
 }
