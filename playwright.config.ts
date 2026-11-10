@@ -10,9 +10,10 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
   webServer: {
-    command: 'pnpm preview --host 127.0.0.1 --port 4321',
-    port: 4321,
+    command: 'pnpm exec astro preview --host 127.0.0.1 --port 4321',
+    url: 'http://127.0.0.1:4321',
     reuseExistingServer: !process.env.CI,
+    timeout: 120_000,
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
 });
