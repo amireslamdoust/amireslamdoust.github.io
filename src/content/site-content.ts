@@ -14,7 +14,7 @@ export const ABOUT_PARAGRAPHS = [
 ] as const;
 
 export const POSITIONING =
-  "I'm a Senior Frontend and Full-Stack engineer in Berlin, with about 12 years across the stack. At Kollex I have been the technical lead for three frontends and the shared platform behind six applications — including a multi-theme design system — and I built an internal AI-agent developer-tooling platform with a human review gate before anything installs.";
+  'Berlin-based Senior Frontend / Full-Stack engineer. Technical lead for three frontends and the shared platform behind six apps at Kollex — including a multi-theme design system — and builder of an internal AI-agent tooling platform with a human review gate.';
 
 export const CASE_STUDIES: readonly CaseStudyDetail[] = [
   {
@@ -117,7 +117,7 @@ export const CASE_STUDIES: readonly CaseStudyDetail[] = [
     constraints:
       'One person, so the stack and the scope had to stay small enough to operate. Payments had to be real, not a mocked checkout.',
     approach:
-      'I designed and implemented the product surfaces and the backend, and I integrated Stripe for the payment flow (front and back). On one personal project I also built a small personalized assistant feature that recommended actions from a user’s profile and behavioural history. That feature is real, and it is a feature, not an AI platform.',
+      'I designed and implemented the product surfaces and the backend, and I integrated Stripe for the payment flow (front and back). On one personal project I also built a small personalized assistant feature that recommended actions from a user’s profile and behavioral history. That feature is real, and it is a feature, not an AI platform.',
     outcome:
       'The products shipped with real payment flows. I am not publishing revenue, user counts, or product names.',
     limits:
@@ -241,6 +241,16 @@ export const SKILLS: readonly SkillGroup[] = [
     id: 'quality',
     label: 'Quality & observability',
     items: ['Jest', 'Cypress', 'Datadog', 'Sentry', 'PostHog'],
+  },
+  {
+    id: 'data',
+    label: 'Data',
+    items: ['PostgreSQL', 'MongoDB', 'DynamoDB', 'Redis', 'Algolia'],
+  },
+  {
+    id: 'mobile',
+    label: 'Mobile',
+    items: ['React Native (Expo)'],
   },
   {
     id: 'payments',

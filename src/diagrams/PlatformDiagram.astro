@@ -15,12 +15,12 @@
     </text>
     {
       [
-        { x: 28, label: 'Shop' },
-        { x: 148, label: 'Backoffice' },
-        { x: 268, label: 'Merchant' },
-        { x: 388, label: 'Promotions MF' },
-        { x: 508, label: 'Marketing' },
-        { x: 628, label: 'Mobile' },
+        { x: 28, lines: ['Shop'] },
+        { x: 148, lines: ['Backoffice'] },
+        { x: 268, lines: ['Merchant', 'Center'] },
+        { x: 388, lines: ['Promotions'] },
+        { x: 508, lines: ['Marketing', 'site'] },
+        { x: 628, lines: ['Mobile', 'app'] },
       ].map((box) => (
         <g>
           <rect
@@ -32,16 +32,18 @@
             fill="var(--color-bg-elevated)"
             stroke="var(--color-border)"
           />
-          <text
-            x={box.x + 52}
-            y="90"
-            text-anchor="middle"
-            fill="var(--color-ink)"
-            font-family="var(--font-body)"
-            font-size="12"
-          >
-            {box.label}
-          </text>
+          {box.lines.map((line, index) => (
+            <text
+              x={box.x + 52}
+              y={box.lines.length === 1 ? 90 : 82 + index * 14}
+              text-anchor="middle"
+              fill="var(--color-ink)"
+              font-family="var(--font-body)"
+              font-size="12"
+            >
+              {line}
+            </text>
+          ))}
         </g>
       ))
     }

@@ -77,14 +77,16 @@ export function CommandPalette() {
       {open ? (
         <div
           role="presentation"
+          className="command-palette-overlay"
           style={{
             position: 'fixed',
             inset: 0,
             zIndex: 80,
             background: 'color-mix(in oklab, var(--color-ink) 35%, transparent)',
-            display: 'grid',
-            placeItems: 'start center',
-            paddingTop: '12vh',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '1rem',
           }}
           onClick={() => setOpen(false)}
         >
@@ -92,6 +94,7 @@ export function CommandPalette() {
             label="Command palette"
             style={{
               width: 'min(560px, calc(100vw - 2rem))',
+              margin: '0 auto',
               background: 'var(--color-bg-elevated)',
               color: 'var(--color-ink)',
               border: '1px solid var(--color-border)',

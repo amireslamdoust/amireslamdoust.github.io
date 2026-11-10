@@ -28,6 +28,9 @@
     "@astrojs/markdown-satteri": "^0.4.8",
     "@astrojs/mdx": "^8.1.4",
     "@astrojs/react": "^7.1.7",
+    "@fontsource/fraunces": "^5.3.0",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@fontsource/sora": "^5.3.0",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "astro": "^7.4.10",
@@ -50,6 +53,7 @@
     "jsdom": "^31.0.0",
     "lint-staged": "^17.6.0",
     "prettier": "^3.9.10",
+    "sharp": "^0.35.5",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.72.2",
     "vitest": "^5.1.0"
