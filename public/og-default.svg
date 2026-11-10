@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Amir Eslamdoust">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d9e4f5"/>
+      <stop offset="50%" stop-color="#f4efe4"/>
+      <stop offset="100%" stop-color="#e8f0e6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <text x="80" y="250" font-family="Georgia, serif" font-size="72" fill="#1b1c22">Amir Eslamdoust</text>
+  <text x="80" y="330" font-family="Arial, sans-serif" font-size="34" fill="#4a5160">Senior Frontend / Full-Stack Engineer · Berlin</text>
+  <text x="80" y="520" font-family="Arial, sans-serif" font-size="24" fill="#6a7385">amireslamdoust.github.io</text>
+</svg>

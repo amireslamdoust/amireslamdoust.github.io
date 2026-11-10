@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '@shared/lib/paths';
+---
+
+<BaseLayout title="Not found — Amir Eslamdoust" description="Page not found.">
+  <section class="section">
+    <div class="container prose">
+      <p class="section__eyebrow">404</p>
+      <h1 class="section__title">This page is not here</h1>
+      <p>The URL may be wrong, or the page moved. Try the home page or selected work.</p>
+      <div class="cluster">
+        <a class="btn btn--primary" href={withBase('')}>Home</a>
+        <a class="btn btn--ghost" href={withBase('#work')}>Work</a>
+        <a class="btn btn--ghost" href={withBase('cv')}>CV</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,28 @@
+# build
+dist/
+.astro/
+.output/
+
+# deps
+node_modules/
+
+# env / secrets
+.env
+.env.*
+!.env.example
+
+# editors / OS
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# test
+coverage/
+playwright-report/
+test-results/
+.blob/
+
+# logs
+*.log
+pnpm-debug.log*

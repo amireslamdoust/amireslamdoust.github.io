@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { contentQuery } from '@features/cv/content-query-facade';
+import { LANGUAGES_LINE } from '@content/site-content';
+import { CV_PDF_PATH, withBase } from '@shared/lib/paths';
+
+const identity = contentQuery.identity();
+const experience = contentQuery.experience();
+const skills = contentQuery.skills();
+const speaking = contentQuery.speaking();
+const education = contentQuery.education();
+---
+
+<BaseLayout title={`CV — ${identity.fullName}`} description="Printable HTML curriculum vitae.">
+  <article class="section cv-page">
+    <div class="container prose">
+      <div class="cluster no-print" style="margin-bottom: var(--space-5)">
+        <button class="btn btn--ghost" type="button" onclick="window.print()">Print</button>
+        <a class="btn btn--primary" href={withBase(CV_PDF_PATH.replace(/^\//, ''))}>Download PDF</a>
+      </div>
+
+      <header>
+        <h1 class="hero__name" style="font-size: clamp(2rem, 5vw, 3rem)">{identity.fullName}</h1>
+        <p class="hero__role">{identity.roleLine}</p>
+        <p class="hero__meta">
+          {identity.location} ·
+          <a href={`mailto:${identity.contact.email}`}>{identity.contact.email}</a> ·
+          <a href={identity.contact.linkedIn}>{identity.contact.linkedIn.replace('https://', '')}</a>
+        </p>
+      </header>
+
+      <h2>Summary</h2>
+      <p>
+        Senior Frontend and Full-Stack engineer in Berlin, with 12 years across frontend, backend and cloud,
+        and technical lead for three frontends at Kollex, working with about 5 teams while the platform grew
+        from 500 to 5,000+ active customers. Built and rolled out an internal AI-agent developer-tooling
+        platform with a security-review gate before anything installs. Has also designed, built and shipped
+        two SaaS products solo, including Stripe payments. Speaker at Code Europe 2026.
+      </p>
+
+      <h2>Experience</h2>
+      {
+        experience.map((role) => (
+          <section style="margin-bottom: var(--space-5)">
+            <h3 style="margin-bottom: 0.2rem">
+              {role.title} — {role.employer}
+            </h3>
+            <p class="timeline__meta">
+              {role.startLabel} – {role.endLabel} · {role.location}
+            </p>
+            {role.blurb ? <p class="timeline__meta">{role.blurb}</p> : null}
+            <ul>
+              {role.bullets.map((bullet) => (
+                <li>{bullet}</li>
+              ))}
+            </ul>
+          </section>
+        ))
+      }
+
+      <h2>Skills</h2>
+      {
+        skills.map((group) => (
+          <p>
+            <strong>{group.label}:</strong> {group.items.join(', ')}
+          </p>
+        ))
+      }
+
+      <h2>Speaking</h2>
+      <p>
+        “{speaking.title},” {speaking.event} {speaking.year}
+      </p>
+
+      <h2>Education</h2>
+      <p>
+        {education.degree}, {education.school}, {education.years}
+      </p>
+
+      <h2>Languages</h2>
+      <p>{LANGUAGES_LINE}</p>
+    </div>
+  </article>
+</BaseLayout>

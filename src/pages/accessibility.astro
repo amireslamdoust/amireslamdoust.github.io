@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { AMIR_IDENTITY } from '@domain/models/identity';
+---
+
+<BaseLayout title="Accessibility — Amir Eslamdoust" description="Accessibility statement for this portfolio.">
+  <section class="section">
+    <div class="container prose">
+      <p class="section__eyebrow">Accessibility</p>
+      <h1 class="section__title">Accessibility statement</h1>
+      <p>
+        This site aims to meet WCAG 2.2 AA. Critical hiring content (name, role, experience, contact, CV)
+        remains available without JavaScript. Interactive features (theme switcher, command palette) are keyboard operable.
+      </p>
+      <ul>
+        <li>Skip link to main content</li>
+        <li>Visible focus styles via design tokens</li>
+        <li>Honours <code>prefers-reduced-motion</code></li>
+        <li>Semantic headings and landmarks</li>
+        <li>SVG diagrams include text alternatives</li>
+      </ul>
+      <p>
+        If you hit a barrier, email
+        <a href={`mailto:${AMIR_IDENTITY.contact.email}`}>{AMIR_IDENTITY.contact.email}</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

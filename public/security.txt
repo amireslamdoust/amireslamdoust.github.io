@@ -1,0 +1,3 @@
+Contact: mailto:amireslamdoust@gmail.com
+Preferred-Languages: en, de
+Canonical: https://amireslamdoust.github.io/security.txt

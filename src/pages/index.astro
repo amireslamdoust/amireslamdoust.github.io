@@ -1,0 +1,153 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { contentQuery } from '@features/cv/content-query-facade';
+import {
+  ABOUT_PARAGRAPHS,
+  LANGUAGES_LINE,
+  POSITIONING,
+} from '@content/site-content';
+import { CV_PDF_PATH, withBase } from '@shared/lib/paths';
+
+const identity = contentQuery.identity();
+const work = contentQuery.caseStudySummaries();
+const experience = contentQuery.experience();
+const skills = contentQuery.skills();
+const speaking = contentQuery.speaking();
+const education = contentQuery.education();
+---
+
+<BaseLayout>
+  <section class="hero">
+    <div class="atmosphere" aria-hidden="true">
+      <div class="atmosphere__wash"></div>
+      <div class="atmosphere__grain"></div>
+    </div>
+    <div class="container hero__content reveal">
+      <p class="section__eyebrow">{identity.location} · {identity.experienceYearsLabel}</p>
+      <h1 class="hero__name">{identity.fullName}</h1>
+      <p class="hero__role">{identity.roleLine}</p>
+      <p class="hero__meta">{POSITIONING}</p>
+      <div class="cluster">
+        <a class="btn btn--primary" href={`mailto:${identity.contact.email}`}>Email</a>
+        <a class="btn btn--ghost" href={withBase('cv')}>View CV</a>
+        <a class="btn btn--ghost" href={withBase(CV_PDF_PATH.replace(/^\//, ''))}>Download PDF</a>
+        <a class="btn btn--ghost" href={identity.contact.linkedIn} rel="noopener noreferrer" target="_blank">LinkedIn</a>
+        <span class="kbd no-print" aria-hidden="true">⌘K</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" class="section">
+    <div class="container">
+      <p class="section__eyebrow">Selected work</p>
+      <h2 class="section__title">Systems over screenshots</h2>
+      <p class="section__lead">
+        Three case studies: a shared frontend platform, internal AI-agent tooling with a review gate, and solo SaaS delivery with Stripe — described without private product names or employer UI.
+      </p>
+      <div class="work-grid">
+        {
+          work.map((item) => (
+            <a class="work-card theme-crossfade" href={withBase(`work/${item.slug}`)}>
+              <p class="work-card__context">{item.context}</p>
+              <h3 class="work-card__title">{item.cardTitle}</h3>
+              <p class="work-card__outcome">{item.outcomeLine}</p>
+              <div class="tag-row">
+                {item.tags.slice(0, 4).map((tag) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="container prose">
+      <p class="section__eyebrow">About</p>
+      <h2 class="section__title">Design systems, platforms, agents</h2>
+      {ABOUT_PARAGRAPHS.map((paragraph) => <p>{paragraph}</p>)}
+      <p>{LANGUAGES_LINE}</p>
+    </div>
+  </section>
+
+  <section id="experience" class="section">
+    <div class="container">
+      <p class="section__eyebrow">Experience</p>
+      <h2 class="section__title">Timeline</h2>
+      <ol class="timeline">
+        {
+          experience.map((role) => (
+            <li class="timeline__item">
+              <h3 class="timeline__title">
+                {role.title} · {role.employer}
+                {role.current ? ' · Now' : ''}
+              </h3>
+              <p class="timeline__meta">
+                {role.startLabel} – {role.endLabel} · {role.location}
+              </p>
+              {role.blurb ? <p class="timeline__meta">{role.blurb}</p> : null}
+              <ul>
+                {role.bullets.map((bullet) => (
+                  <li>{bullet}</li>
+                ))}
+              </ul>
+            </li>
+          ))
+        }
+      </ol>
+      <div class="prose" style="margin-top: var(--space-6)">
+        <h3>Also</h3>
+        <ul>
+          <li>
+            Talk: “{speaking.title},” {speaking.event} {speaking.year}
+          </li>
+          <li>
+            Certification: Datadog — Beyond Collection: Building Observability with Logs
+          </li>
+          <li>
+            {education.degree}, {education.school}, {education.years}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="section">
+    <div class="container">
+      <p class="section__eyebrow">Skills</p>
+      <h2 class="section__title">Grouped, not a tag cloud</h2>
+      <div class="skills-grid">
+        {
+          skills.map((group) => (
+            <div class="skill-group">
+              <h3>{group.label}</h3>
+              <ul>
+                {group.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="container">
+      <p class="section__eyebrow">Contact</p>
+      <h2 class="section__title">Let’s talk</h2>
+      <p class="section__lead">
+        Email and LinkedIn only. Based in Berlin; open to teams in Germany and remote-in-Germany.
+      </p>
+      <div class="cluster">
+        <a class="btn btn--primary" href={`mailto:${identity.contact.email}`}>Email Amir</a>
+        <a class="btn btn--ghost" href={identity.contact.linkedIn} rel="noopener noreferrer" target="_blank">LinkedIn</a>
+        <a class="btn btn--ghost" href={withBase('cv')}>View CV</a>
+        <a class="btn btn--ghost" href={withBase(CV_PDF_PATH.replace(/^\//, ''))}>Download PDF</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

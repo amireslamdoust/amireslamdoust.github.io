@@ -1,0 +1,39 @@
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    animation: reveal-up var(--motion-slow) var(--ease-out) both;
+  }
+
+  .theme-crossfade {
+    transition:
+      background-color var(--motion-med) var(--ease-soft),
+      color var(--motion-med) var(--ease-soft),
+      border-color var(--motion-med) var(--ease-soft),
+      box-shadow var(--motion-med) var(--ease-soft);
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes atmosphere-drift {
+  from {
+    transform: translate3d(-1%, -1%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(1.5%, 1%, 0) scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    animation: none;
+  }
+}

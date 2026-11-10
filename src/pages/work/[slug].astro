@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PlatformDiagram from '@diagrams/PlatformDiagram.astro';
+import AgentsDiagram from '@diagrams/AgentsDiagram.astro';
+import { contentQuery } from '@features/cv/content-query-facade';
+import { withBase } from '@shared/lib/paths';
+import type { CaseStudySlug } from '@domain/models/case-study';
+
+export function getStaticPaths() {
+  return contentQuery.caseStudySummaries().map((study) => ({
+    params: { slug: study.slug },
+  }));
+}
+
+const slug = Astro.params.slug as CaseStudySlug;
+const study = contentQuery.caseStudyBySlug(slug);
+
+if (!study) {
+  throw new Error(`Unknown case study: ${slug}`);
+}
+---
+
+<BaseLayout title={study.pageTitle} description={study.outcomeLine}>
+  <article class="case-hero">
+    <div class="container prose">
+      <p class="section__eyebrow">
+        <a href={withBase('#work')}>Work</a> / {study.context}
+      </p>
+      <h1 class="section__title">{study.title}</h1>
+      <div class="tag-row" style="margin-bottom: var(--space-5)">
+        {study.tags.map((tag) => <span class="tag">{tag}</span>)}
+      </div>
+      <p>{study.summary}</p>
+
+      <h2>Problem</h2>
+      <p>{study.problem}</p>
+
+      <h2>Constraints</h2>
+      <p>{study.constraints}</p>
+
+      <h2>Approach</h2>
+      <p>{study.approach}</p>
+
+      <h2>Architecture</h2>
+      {study.diagramId === 'platform' ? <PlatformDiagram /> : null}
+      {study.diagramId === 'agents' ? <AgentsDiagram /> : null}
+      {
+        !study.diagramId ? (
+          <p>
+            Generic shape: web client, API, data store, and Stripe. Kept intentionally non-identifying.
+          </p>
+        ) : null
+      }
+
+      <h2>Outcome</h2>
+      <p>{study.outcome}</p>
+
+      {study.roleHonesty ? (
+        <>
+          <h2>Role honesty</h2>
+          <p>{study.roleHonesty}</p>
+        </>
+      ) : null}
+
+      {study.limits ? (
+        <>
+          <h2>Limits</h2>
+          <p>{study.limits}</p>
+        </>
+      ) : null}
+
+      <h2>Stack</h2>
+      <div class="tag-row">
+        {study.tech.map((item) => <span class="tag">{item}</span>)}
+      </div>
+
+      <p style="margin-top: var(--space-7)">
+        <a href={withBase('#work')}>Back to work</a>
+      </p>
+    </div>
+  </article>
+</BaseLayout>

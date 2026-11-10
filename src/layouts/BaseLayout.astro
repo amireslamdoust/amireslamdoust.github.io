@@ -1,0 +1,137 @@
+---
+import '../styles/global.css';
+import { ThemeControls } from '@features/theme/ThemeControls';
+import { CommandPalette } from '@features/command-palette/CommandPalette';
+import { AMIR_IDENTITY } from '@domain/models/identity';
+import { SITE_URL, withBase, CV_PDF_PATH } from '@shared/lib/paths';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogType?: string;
+}
+
+const {
+  title = `${AMIR_IDENTITY.fullName} — ${AMIR_IDENTITY.roleLine}`,
+  description = 'Senior Frontend / Full-Stack engineer in Berlin. Design systems, frontend platforms, and AI-agent developer tooling.',
+  ogType = 'website',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, SITE_URL).toString();
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en" data-theme="neutral" data-color-scheme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#f9f7f2" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL('/og-default.svg', SITE_URL).toString()} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href={withBase('favicon.svg')} type="image/svg+xml" />
+    <link rel="sitemap" href={withBase('sitemap.xml')} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline>
+      (function () {
+        try {
+          var raw = localStorage.getItem('ae-portfolio-theme');
+          var state = raw ? JSON.parse(raw) : { brand: 'neutral', colorScheme: 'light' };
+          var brand = state && state.brand ? state.brand : 'neutral';
+          var scheme = state && state.colorScheme ? state.colorScheme : 'light';
+          if (scheme === 'system') {
+            scheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          }
+          document.documentElement.dataset.theme = brand;
+          document.documentElement.dataset.colorScheme = scheme;
+          document.documentElement.style.colorScheme = scheme;
+        } catch (e) {
+          document.documentElement.dataset.theme = 'neutral';
+          document.documentElement.dataset.colorScheme = 'light';
+        }
+      })();
+    </script>
+    <style is:global>
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: AMIR_IDENTITY.fullName,
+      jobTitle: AMIR_IDENTITY.roleLine,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Berlin',
+        addressCountry: 'DE',
+      },
+      email: AMIR_IDENTITY.contact.email,
+      url: SITE_URL,
+      sameAs: [AMIR_IDENTITY.contact.linkedIn, 'https://github.com/amireslamdoust'],
+    })} />
+  </head>
+  <body class="theme-crossfade">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header no-print">
+      <div class="container site-header__inner">
+        <a class="brand" href={withBase('')}>
+          <span class="brand__mono" aria-hidden="true">{AMIR_IDENTITY.monogram}</span>
+          <span>{AMIR_IDENTITY.fullName}</span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href={withBase('#work')}>Work</a>
+          <a href={withBase('#about')}>About</a>
+          <a href={withBase('#experience')}>Experience</a>
+          <a href={withBase('#skills')}>Skills</a>
+          <a href={withBase('#contact')}>Contact</a>
+          <a href={withBase('cv')}>CV</a>
+        </nav>
+        <div class="cluster">
+          <CommandPalette client:load />
+          <ThemeControls client:load />
+        </div>
+      </div>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="container stack">
+        <div class="cluster">
+          <a href={`mailto:${AMIR_IDENTITY.contact.email}`}>{AMIR_IDENTITY.contact.email}</a>
+          <a href={AMIR_IDENTITY.contact.linkedIn} rel="noopener noreferrer" target="_blank">LinkedIn</a>
+          <a href={withBase('cv')}>CV</a>
+          <a href={withBase(CV_PDF_PATH.replace(/^\//, ''))}>Download PDF</a>
+          <a href={withBase('colophon')}>Colophon</a>
+          <a href={withBase('accessibility')}>Accessibility</a>
+          <a href="https://github.com/amireslamdoust/amireslamdoust.github.io" rel="noopener noreferrer" target="_blank">Source</a>
+        </div>
+        <p>
+          © {year} {AMIR_IDENTITY.fullName}. Designed and engineered as a small design system, and built in the open.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

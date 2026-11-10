@@ -1,0 +1,149 @@
+/* Semantic design tokens — themes remap these, components never hardcode brand colors. */
+
+:root {
+  --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+  --font-body: "Sora", "Avenir Next", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", "SF Mono", ui-monospace, monospace;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 7rem;
+
+  --radius-sm: 0.35rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+
+  --shadow-1: 0 1px 0 color-mix(in oklab, var(--color-ink) 8%, transparent);
+  --shadow-2: 0 18px 50px color-mix(in oklab, var(--color-ink) 12%, transparent);
+
+  --measure: 68ch;
+  --header-h: 4rem;
+
+  --motion-fast: 140ms;
+  --motion-med: 280ms;
+  --motion-slow: 520ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
+
+  --focus-ring: 0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-accent);
+}
+
+/* Neutral × light */
+[data-theme="neutral"][data-color-scheme="light"] {
+  --color-bg: oklch(0.985 0.008 95);
+  --color-bg-elevated: oklch(0.995 0.004 95);
+  --color-surface: oklch(0.97 0.012 95);
+  --color-ink: oklch(0.22 0.02 260);
+  --color-muted: oklch(0.48 0.02 260);
+  --color-border: oklch(0.88 0.015 95);
+  --color-accent: oklch(0.48 0.12 250);
+  --color-accent-soft: oklch(0.92 0.04 250);
+  --color-warm: oklch(0.72 0.12 70);
+  --atmosphere-a: oklch(0.9 0.06 250);
+  --atmosphere-b: oklch(0.93 0.05 85);
+  --atmosphere-c: oklch(0.96 0.03 40);
+  --grain-opacity: 0.045;
+}
+
+/* Neutral × dark */
+[data-theme="neutral"][data-color-scheme="dark"] {
+  --color-bg: oklch(0.18 0.02 260);
+  --color-bg-elevated: oklch(0.22 0.02 260);
+  --color-surface: oklch(0.24 0.022 260);
+  --color-ink: oklch(0.95 0.01 95);
+  --color-muted: oklch(0.72 0.02 260);
+  --color-border: oklch(0.34 0.02 260);
+  --color-accent: oklch(0.78 0.1 230);
+  --color-accent-soft: oklch(0.3 0.05 230);
+  --color-warm: oklch(0.78 0.1 70);
+  --atmosphere-a: oklch(0.28 0.06 250);
+  --atmosphere-b: oklch(0.24 0.04 300);
+  --atmosphere-c: oklch(0.22 0.03 40);
+  --grain-opacity: 0.07;
+}
+
+/* Ink × light — editorial high contrast */
+[data-theme="ink"][data-color-scheme="light"] {
+  --color-bg: oklch(0.98 0.004 100);
+  --color-bg-elevated: oklch(1 0 0);
+  --color-surface: oklch(0.955 0.008 100);
+  --color-ink: oklch(0.14 0.01 260);
+  --color-muted: oklch(0.4 0.01 260);
+  --color-border: oklch(0.82 0.01 100);
+  --color-accent: oklch(0.4 0.18 25);
+  --color-accent-soft: oklch(0.93 0.04 25);
+  --color-warm: oklch(0.7 0.14 55);
+  --atmosphere-a: oklch(0.92 0.03 25);
+  --atmosphere-b: oklch(0.94 0.02 100);
+  --atmosphere-c: oklch(0.9 0.04 250);
+  --grain-opacity: 0.05;
+  --radius-sm: 0.15rem;
+  --radius-md: 0.35rem;
+  --radius-lg: 0.6rem;
+}
+
+[data-theme="ink"][data-color-scheme="dark"] {
+  --color-bg: oklch(0.14 0.01 260);
+  --color-bg-elevated: oklch(0.18 0.012 260);
+  --color-surface: oklch(0.2 0.014 260);
+  --color-ink: oklch(0.96 0.01 100);
+  --color-muted: oklch(0.7 0.015 260);
+  --color-border: oklch(0.3 0.015 260);
+  --color-accent: oklch(0.78 0.14 35);
+  --color-accent-soft: oklch(0.28 0.05 35);
+  --color-warm: oklch(0.8 0.1 70);
+  --atmosphere-a: oklch(0.22 0.04 25);
+  --atmosphere-b: oklch(0.2 0.03 260);
+  --atmosphere-c: oklch(0.18 0.04 300);
+  --grain-opacity: 0.08;
+  --radius-sm: 0.15rem;
+  --radius-md: 0.35rem;
+  --radius-lg: 0.6rem;
+}
+
+/* Field × light — warm earth */
+[data-theme="field"][data-color-scheme="light"] {
+  --color-bg: oklch(0.97 0.02 110);
+  --color-bg-elevated: oklch(0.99 0.01 110);
+  --color-surface: oklch(0.94 0.03 110);
+  --color-ink: oklch(0.26 0.04 145);
+  --color-muted: oklch(0.46 0.03 145);
+  --color-border: oklch(0.86 0.03 110);
+  --color-accent: oklch(0.5 0.12 155);
+  --color-accent-soft: oklch(0.9 0.05 155);
+  --color-warm: oklch(0.7 0.12 75);
+  --atmosphere-a: oklch(0.9 0.06 145);
+  --atmosphere-b: oklch(0.92 0.05 90);
+  --atmosphere-c: oklch(0.94 0.04 50);
+  --grain-opacity: 0.05;
+}
+
+[data-theme="field"][data-color-scheme="dark"] {
+  --color-bg: oklch(0.2 0.03 150);
+  --color-bg-elevated: oklch(0.24 0.03 150);
+  --color-surface: oklch(0.26 0.035 150);
+  --color-ink: oklch(0.95 0.015 110);
+  --color-muted: oklch(0.74 0.03 145);
+  --color-border: oklch(0.35 0.03 150);
+  --color-accent: oklch(0.8 0.1 155);
+  --color-accent-soft: oklch(0.32 0.05 155);
+  --color-warm: oklch(0.78 0.1 75);
+  --atmosphere-a: oklch(0.28 0.05 155);
+  --atmosphere-b: oklch(0.25 0.04 100);
+  --atmosphere-c: oklch(0.23 0.04 50);
+  --grain-opacity: 0.07;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-med: 0ms;
+    --motion-slow: 0ms;
+  }
+}

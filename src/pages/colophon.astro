@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Colophon — Amir Eslamdoust" description="How this site is built.">
+  <section class="section">
+    <div class="container prose">
+      <p class="section__eyebrow">Colophon</p>
+      <h1 class="section__title">How this site is built</h1>
+      <p>
+        Designed and engineered as a small design system, and built in the open. The repository itself is part of the portfolio.
+      </p>
+      <h2>Stack</h2>
+      <ul>
+        <li>Astro (static) + TypeScript (strict) + MDX</li>
+        <li>React islands for theme controls and the command palette</li>
+        <li>CSS design tokens (OKLCH) with live brand themes and light/dark</li>
+        <li>Layered architecture: domain ports, facades, adapters</li>
+        <li>GitHub Pages via GitHub Actions</li>
+      </ul>
+      <h2>Type</h2>
+      <p>Fraunces (display), Sora (body), IBM Plex Mono (meta).</p>
+      <h2>Source</h2>
+      <p>
+        <a href="https://github.com/amireslamdoust/amireslamdoust.github.io">github.com/amireslamdoust/amireslamdoust.github.io</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
