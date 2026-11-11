@@ -20,11 +20,31 @@ const {
 
 const canonical = new URL(Astro.url.pathname, SITE_URL).toString();
 const year = new Date().getFullYear();
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 ---
 
 <!doctype html>
 <html lang="en" data-theme="neutral" data-color-scheme="light">
   <head>
+    {
+      gaMeasurementId ? (
+        <>
+          <script
+            is:inline
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+          />
+          <script is:inline define:vars={{ gaMeasurementId }}>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(...args) {
+              dataLayer.push(args);
+            }
+            gtag('js', new Date());
+            gtag('config', gaMeasurementId);
+          </script>
+        </>
+      ) : null
+    }
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
